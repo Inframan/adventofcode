@@ -5,14 +5,20 @@ import scala.annotation.tailrec
 
 class Day1 {
 
-  final def measurementIncrease(report: List[Int]): Int = {
-    // There is an increase if the head of the tail is smaller than it's next element
-    // there is no increase if it's the last element of the list
-    return if (report.size <= 1 || report.head >= Option(report.tail.head).getOrElse(Int.MinValue)) {
-      measurementIncrease(report.tail)
-    } else {
-      measurementIncrease(report.tail) + 1
-    }
+  def measurementIncrease(report: List[Int]): Int = {
+    measurementIncrease(report, 0)
   }
 
+  def measurementIncrease(report: List[Int], count: Int): Int = {
+    // There is an increase if the head of the list is smaller than it's next element
+    // there is no increase if it's the last element of the list
+    return if (report.size <= 1) {
+      count
+    } else if (report.head < report.tail.head) {
+      measurementIncrease(report.tail, count + 1)
+    } else {
+      measurementIncrease(report.tail, count)
+    }
+
+  }
 }
