@@ -1,5 +1,8 @@
 *.class
 *.log
-target
+target/
 .bsp
 .bsp/*
+debug/
+Cargo.lock
+**/*.rs.bk
